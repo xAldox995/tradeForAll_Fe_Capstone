@@ -1,35 +1,50 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Col, Container, Row } from 'react-bootstrap';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  const themeStyles = {
+    backgroundColor: isDarkMode ? "#0b080c" : "#f0ffff",
+    color: isDarkMode ? "#f0ffff" : "#000f0f",
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Container fluid className="p-4" style={themeStyles}>
+      
+      <div className="d-flex justify-content-end mb-3">
+        <Button
+          onClick={toggleTheme}
+          variant={isDarkMode ? "light" : "dark"}
+          className="px-4"
+        >
+          {isDarkMode ? "Light Mode" : "Dark Mode"}
+        </Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {/* Header */}
+      {/* <Header isDarkMode={isDarkMode} /> */}
+
+      {/* Main Content */}
+      <Row>
+        <Col lg={3} md={4} sm={12}>
+          {/* <WalletCard isDarkMode={isDarkMode} /> */}
+        </Col>
+        <Col lg={6} md={8} sm={12}>
+          {/* <TradingChart isDarkMode={isDarkMode} /> */}
+        </Col>
+        <Col lg={3} md={4} sm={12}>
+          {/* <MoneyTransferCard isDarkMode={isDarkMode} /> */}
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default App
