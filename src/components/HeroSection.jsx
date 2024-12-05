@@ -1,15 +1,15 @@
 
 
-import { color } from 'chart.js/helpers';
+
 import { Container, Button } from 'react-bootstrap';
 
 const HeroSection = ({onLogin,onRegister}) => {
   return (
     
       <Container>
-        <h1 className="hero-title">Benvenuto su CryptoTrader</h1>
+        <h1 className="hero-title">Benvenuto su Trade for All</h1>
         <p className="hero-description">
-          La piattaforma di trading più affidabile e sicura per le criptovalute.
+          Il miglior simulatore di trading più affidabile e sicura per le criptovalute.
         </p>
         <Button  className="me-3 button" onClick={onRegister}>
           Registrati
