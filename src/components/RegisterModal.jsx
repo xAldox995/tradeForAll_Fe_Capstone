@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import { Modal, Button, Form } from 'react-bootstrap';
 
