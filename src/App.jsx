@@ -1,25 +1,24 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import LandingPage from './pages/LandingPage';
-import ModeButton from './components/ModeButton' 
-import './App.css';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import "./App.css";
 
 const App = () => {
   return (
-    <div className="app dark-mode">
-      <ModeButton/>
-      <Router>
-        <Sidebar />
-        <div className="content">
-          
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={<LandingPage />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
 export default App;
+
+

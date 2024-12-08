@@ -10,7 +10,7 @@ const ModeButton = ()=>{
     };
     return (
       <button onClick={cambioTema} className="theme-toggle">
-        {tema === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        {tema === "dark" ? "🌙" : "☀️"}
       </button>
     );
 }
