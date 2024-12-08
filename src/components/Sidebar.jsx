@@ -5,7 +5,7 @@ import ModeButton from "./ModeButton";
 import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
 import logo from "../assets/img/TradeForAll-03.svg";
-import "src/assets/styles/Sidebar.css";
+import "./Sidebar2.css";
 import { useState } from "react";
 
 const Sidebar = () => {
