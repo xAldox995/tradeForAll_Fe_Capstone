@@ -4,8 +4,8 @@ import { Nav } from "react-bootstrap";
 import ModeButton from "./ModeButton";
 import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
-import logo from "../assets/img/TradeForAll-03.svg";
-import "./Sidebar2.css";
+import logo from "../assets/img/logoTradeForAll-03.png";
+import "./Sidebar.css";
 import { useState } from "react";
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
       {/* Sidebar per Desktop/Tablet */}
       <Nav className="sidebar d-none d-md-flex flex-column">
         <div className="logo-container">
-          <img src={logo} alt="TradeForAll Logo" className="logo" />
+          <img src={logo} alt="TradeForAll Logo" className="logo w-100" />
         </div>
         <Nav.Item>
           <Nav.Link  className="nav-link">
@@ -40,10 +40,10 @@ const Sidebar = () => {
       </Nav>
 
       {/* Navbar per Mobile */}
-      <Nav className="nav-mobile d-md-none fixed-bottom justify-content-around">
+      <Nav className=" d-md-none fixed-bottom justify-content-around">
         <Nav.Item>
           <Nav.Link >
-            <img src={logo} alt="Logo" className="mobile-logo" />
+            <img src={logo} alt="Logo" className="mobile-logo w-25" />
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

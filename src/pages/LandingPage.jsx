@@ -1,6 +1,6 @@
 
 import Sidebar from "../components/Sidebar";
-import "./LandingPage2.css";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (

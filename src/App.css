@@ -5,18 +5,23 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+.app {
+  transition: background-color 0.3s, color 0.3s;
+}
+
 .dark-mode {
-  --background-color: #0b080c;
-  --text-color: #f0ffff;
-  --primary-color: #759BFF;
-  --secondary-color: #99a7cc;
+  --background-color: #121212;
+  --text-color: #e0e0e0;
 }
 
 .light-mode {
-  --background-color: #f0ffff;
-  --text-color: #000f0f;
-  --primary-color: #99a7cc;
-  --secondary-color: #21325e;
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 
