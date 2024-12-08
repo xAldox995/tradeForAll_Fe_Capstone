@@ -1,27 +1,25 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import Sidebar from "./components/Sidebar";
-import ModeButton from "./components/ModeButton";
 
-function App() {
-  const tema = useSelector((stato) => stato.tema);
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import LandingPage from './pages/LandingPage';
+import ModeButton from './components/ModeButton' 
+import './App.css';
 
+const App = () => {
   return (
-    <div className={`app ${tema}`}>
-      <Sidebar />
-      <div className="content">
-        <ModeButton/>
-        <BrowserRouter>
+    <div className="app dark-mode">
+      <ModeButton/>
+      <Router>
+        <Sidebar />
+        <div className="content">
+          
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;

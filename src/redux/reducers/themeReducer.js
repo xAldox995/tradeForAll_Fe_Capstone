@@ -1,6 +1,8 @@
 import { TOGGLE_TEMA } from "../actions/types";
 
-const statoIniziale = 'dark';
+const statoIniziale = {
+    tema:'dark',
+};
 
 const themeReducer = (stato = statoIniziale, action) => {
     switch (action.type) {

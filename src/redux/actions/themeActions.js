@@ -1,7 +1,7 @@
-import { TOGGLE_TEMA } from "./types"
+import { TOGGLE_TEMA } from "./types";
 
-export const toogleTema = () => {
+export const toggleTema = () => {
     return {
         type: TOGGLE_TEMA,
-    }
-}
+    };
+};

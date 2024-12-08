@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toogleTema } from "../redux/actions/themeActions";
+import { toggleTema } from "../redux/actions/themeActions";
 
 const ModeButton = ()=>{
-    const tema= useSelector((stato)=>stato.tema)
+    const tema= useSelector((stato)=>stato.tema.tema)
     const dispatch = useDispatch();
 
     const cambioTema = () => {
-      dispatch(toogleTema());
+      dispatch(toggleTema());
     };
     return (
       <button onClick={cambioTema} className="theme-toggle">
-        {tema === 'dark-mode' ? 'Light Mode' : 'Dark Mode'}
+        {tema === 'dark' ? 'Light Mode' : 'Dark Mode'}
       </button>
     );
 }

@@ -1,28 +1,33 @@
+;
+import { Modal, Button } from 'react-bootstrap';
 
-import { Modal, Button, Form } from 'react-bootstrap';
+const LoginModal = ({ show, handleClose }) => {
 
-const LoginModal = ({ show, close }) => {
   return (
-    <Modal show={show} onHide={close}>
+    <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Button type="submit" className="mt-3">
-            Login
-          </Button>
-        </Form>
+        <form>
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" className="form-control" placeholder="Enter email" />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" className="form-control" placeholder="Enter password" />
+          </div>
+        </form>
       </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Chiudi
+        </Button>
+        <Button variant="primary">Accedi</Button>
+      </Modal.Footer>
     </Modal>
   );
 };
-export default LoginModal
+
+export default LoginModal;
