@@ -20,7 +20,7 @@ const Sidebar = () => {
           <img src={logo} alt="TradeForAll Logo" className="logo" />
         </div>
         <Nav.Item>
-          <Nav.Link href="/market" className="nav-link">
+          <Nav.Link  className="nav-link">
             Mercato
           </Nav.Link>
         </Nav.Item>
@@ -42,7 +42,7 @@ const Sidebar = () => {
       {/* Navbar per Mobile */}
       <Nav className="nav-mobile d-md-none fixed-bottom justify-content-around">
         <Nav.Item>
-          <Nav.Link href="/market">
+          <Nav.Link >
             <img src={logo} alt="Logo" className="mobile-logo" />
           </Nav.Link>
         </Nav.Item>
