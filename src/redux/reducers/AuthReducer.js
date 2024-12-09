@@ -2,8 +2,8 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, 
 
 const initistate = {
     loading: false,
-    user: {},
-    token: "Ciaone",
+    user: null,
+    token: null,
     error: null,
 };
 
@@ -35,7 +35,7 @@ const AuthReducer = (state = initistate, action) => {
         case LOGOUT:
             return {
                 ...state,
-                user: {},
+                user: null,
                 token: null,
             }
         default:
