@@ -1,67 +1,62 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+
 import { Modal, Button, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
 
-const LoginModal = ({ show, handleClose }) => {
-  const [credenziali, setCredenziali] = useState({ email: "", password: "" });
+const LoginModal = ({ show, onHide }) => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { error, loading } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(credenziali));
-    console.log(credenziali);
+    const form = e.target;
+    const credentials = {
+      email: form.elements.email.value,
+      password: form.elements.password.value,
+    };
+    dispatch(login(credentials));
+    onHide();
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {error && <p className="text-danger">{error}</p>}
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formEmail">
+          <Form.Group controlId="loginEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
+              name="email"
               placeholder="Enter email"
-              value={credenziali.email}
-              onChange={(e) =>
-                setCredenziali({ ...credenziali, email: e.target.value })
-              }
               required
+              disabled={loading}
             />
           </Form.Group>
-          <Form.Group controlId="formPassword" className="mt-3">
+          <Form.Group controlId="loginPassword" className="mt-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
-              value={credenziali.password}
-              onChange={(e) =>
-                setCredenziali({ ...credenziali, password: e.target.value })
-              }
+              name="password"
+              placeholder="Password"
               required
+              disabled={loading}
             />
           </Form.Group>
-          {error && <p className="text-danger mt-3">{error}</p>}
           <Button
-            type="submit"
             variant="primary"
-            className="mt-3"
+            type="submit"
+            className="mt-4 w-100"
             disabled={loading}
           >
-            {loading ? "Loading..." : "Login"}
+            {loading ? "Logging in..." : "Login"}
           </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 };

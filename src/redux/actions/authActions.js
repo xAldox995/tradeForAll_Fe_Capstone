@@ -9,12 +9,12 @@ import {
     LOGOUT,
 } from "./types";
 
-const API_URL = `http://localhost:3001/auth`;
+const API_URL = import.meta.env.VITE_BASE_URL_FOR_FETCH;
 
 export const login = (credenziali) => (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     axios
-      .post(`${API_URL}/login`, credenziali,{
+      .post(`${API_URL}/auth/login`, credenziali,{
         "Content-Type": "application/json",
       })
       .then((response) => {
@@ -32,7 +32,7 @@ export const login = (credenziali) => (dispatch) => {
 export const register = (userData) => (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
     axios
-      .post(`${API_URL}/register`, userData)
+      .post(`${API_URL}/auth/register`, userData)
       .then((response) => {
         dispatch({ type: REGISTER_SUCCESS, payload: response.data });
       })
