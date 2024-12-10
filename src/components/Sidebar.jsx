@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/actions/authActions";
-import { Nav, Navbar, Button } from "react-bootstrap";
+import { Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
@@ -77,29 +77,30 @@ const Sidebar = () => {
       <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
       <RegisterModal show={showRegisterModal} onHide={() => setShowRegisterModal(false)} />
       {isMobile ? (
-        <Navbar fixed="bottom" bg="light" className="mobile-navbar">
-          <Nav className="w-100 d-flex justify-content-between align-items-center">
-            <Nav.Item className="nav-item-spacing">
-              <img src={logo} alt="TradeForAll Logo" className="mobile-logo" />
+          <Nav  className="w-100 d-flex align-items-center justify-content-between fixed-bottom px-2">
+            <Nav.Item>
+              <img src={logo} alt="TradeForAll Logo" className="mobile-logo p-0 w-25" />
             </Nav.Item>
-            <Nav.Item className="nav-item-spacing">
+            <div className="d-flex align-center justify-content-between gap-2">
+            <Nav.Item >
               <ModeButton />
             </Nav.Item>
-            <Nav.Item className="nav-item-spacing">
+            <Nav.Item>
               <Button className="sidebar-btn" onClick={() => navigate("/market")}> {/* Market */}
                 <HomeIcon />
               </Button>
             </Nav.Item>
             {renderButtons()}
+            </div>
+
           </Nav>
-        </Navbar>
       ) : (
-        <div className="sidebar">
+        <div className="sidebar gap-4">
           <div className="sidebar-header">
             <img src={logo} alt="TradeForAll Logo" className="sidebar-logo" />
-            <ModeButton />
+            <ModeButton  className="my-3"/>
           </div>
-          <Nav className="flex-column">
+          <Nav className="flex-column gap-3">
             <Nav.Item className="nav-item-spacing">
               <Button className="sidebar-btn" onClick={() => navigate("/market")}> {/* Market */}
                 <HomeIcon /> Market
