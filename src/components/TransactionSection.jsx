@@ -1,8 +1,9 @@
+
 import { Offcanvas } from "react-bootstrap";
 
-const TrasactionSection = () => {
+const TransactionSection = ({show, onHide}) => {
     return (
-        <Offcanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas show={show} onHide={onHide} placement="end">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Transactions</Offcanvas.Title>
           </Offcanvas.Header>
@@ -12,4 +13,4 @@ const TrasactionSection = () => {
         </Offcanvas>
       );
 }
-export default TrasactionSection
+export default TransactionSection
