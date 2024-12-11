@@ -5,6 +5,7 @@ import MyAssetCarousel from "../components/MyAssetCarousel";
 import Sidebar from "../components/Sidebar";
 import MyWalletCard from "../components/MyWalletCard";
 import TopVolumeCard from "../components/TopVolumeCard";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (

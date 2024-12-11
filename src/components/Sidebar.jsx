@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/actions/authActions";
 import { Nav, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
@@ -42,21 +42,21 @@ const Sidebar = () => {
   };
   const hadleTransactions = () => {
    setShowTransactionSection(!showTransactionSection);
-   console.log(hadleTransactions);
+    console.log(hadleTransactions);
   }
 
   const renderButtons = () => {
     if (!user) {
       return (
         <>
-          <Nav.Item className="nav-item-spacing">
+          <Nav.Item className="nav-item-spacing mb-0">
             <Button
               className="sidebar-btn"
               onClick={() => setShowLoginModal(true)}
             >
               {" "}
               {/* Opens Login Modal */}
-              <LoginIcon /> Login
+              <LoginIcon />
             </Button>
           </Nav.Item>
           <Nav.Item className="nav-item-spacing">
@@ -66,7 +66,7 @@ const Sidebar = () => {
             >
               {" "}
               {/* Opens Register Modal */}
-              <AccountBalanceWalletIcon /> Register
+              <HowToRegIcon />
             </Button>
           </Nav.Item>
         </>
@@ -78,7 +78,7 @@ const Sidebar = () => {
             <Button className="sidebar-btn" onClick={handleLogout}>
               {" "}
               {/* Logout */}
-              <LogoutIcon /> Logout
+              <LogoutIcon />
             </Button>
           </Nav.Item>
           <Nav.Item className="nav-item-spacing">
@@ -87,7 +87,7 @@ const Sidebar = () => {
               onClick={() => hadleTransactions()}
             >
               {/* Transactions */}
-              <SwapHorizIcon /> Transactions
+              <SwapHorizIcon />
             </Button>
           </Nav.Item>
         </>
@@ -111,13 +111,12 @@ const Sidebar = () => {
       />
       {isMobile ? (
         <Nav className="w-100 d-flex align-items-center justify-content-between fixed-bottom px-2">
-          <Nav.Item>
             <img
               src={logo}
               alt="TradeForAll Logo"
-              className="mobile-logo p-0 w-25"
+              className="mobile-logo p-0 align-middle my-1 mx-2"
+              style={{ width: "8%" }}
             />
-          </Nav.Item>
           <div className="d-flex align-center justify-content-between gap-2">
             <Nav.Item>
               <ModeButton />
@@ -129,7 +128,7 @@ const Sidebar = () => {
               >
                 {" "}
                 {/* Market */}
-                <HomeIcon />
+                <AccountBalanceWalletIcon />
               </Button>
             </Nav.Item>
             {renderButtons()}
@@ -149,7 +148,7 @@ const Sidebar = () => {
               >
                 {" "}
                 {/* Market */}
-                <HomeIcon /> Market
+                <AccountBalanceWalletIcon />
               </Button>
             </Nav.Item>
             {renderButtons()}
