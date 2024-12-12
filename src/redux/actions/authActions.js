@@ -9,7 +9,7 @@ import {
     LOGOUT,
 } from "./types";
 
-const API_URL = import.meta.env.VITE_BASE_URL_FOR_FETCH;
+export const API_URL = import.meta.env.VITE_BASE_URL_FOR_FETCH;
 
 export const login = (credenziali) => (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
