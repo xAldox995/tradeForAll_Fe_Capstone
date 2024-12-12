@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import { Offcanvas, Button } from "react-bootstrap";
 import  "./TransactionSection.css";
