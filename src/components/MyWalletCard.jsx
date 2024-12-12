@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 
 const MyWalletCard = () => {
     return (
-        <Card className="my-wallet-card">
+        <Card className="cards">
           <Card.Body>
             <Card.Title>My Wallet</Card.Title>
             <Card.Text>Placeholder for wallet data</Card.Text>

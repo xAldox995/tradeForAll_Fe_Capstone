@@ -2,18 +2,17 @@
 
 import { Container, Row, Col } from "react-bootstrap";
 import MyAssetCarousel from "../components/MyAssetCarousel";
-import Sidebar from "../components/Sidebar";
 import MyWalletCard from "../components/MyWalletCard";
 import TopVolumeCard from "../components/TopVolumeCard";
 import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
-    <Container fluid className="dashboard-container">
+    <Container fluid className="dashboard-container h-100">
       
       <Row>
         <Col md={2} className="dashboard-sidebar">
-          <Sidebar />
+        
         </Col>
 
         

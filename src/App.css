@@ -1,28 +1,55 @@
-.app {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  transition: background-color 0.3s, color 0.3s;
+:root[data-theme="dark-mode"] {
+  --background-color: #0b080c;
+  --text-color: #f0ffff;
+  --btn-primary: #334166;
+  --btn-hover: #759cff;
+  --nav-icon-color: #99a7cc;
 }
 
-.app {
-  transition: background-color 0.3s, color 0.3s;
+:root[data-theme="light-mode"] {
+  --background-color: #f0ffff;
+  --text-color: #000f0f;
+  --btn-primary: #21325e;
+  --btn-hover: #99a7cc;
+  --nav-icon-color:#0b080c;
 }
 
-.dark-mode {
-  --background-color: #121212;
-  --text-color: #e0e0e0;
-}
-
-.light-mode {
-  --background-color: #ffffff;
-  --text-color: #000000;
-}
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  width: 100%;
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+  width: 100% !important;
+}
+
+body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
+  display: none;
+}
+
+.button {
+  background-color: var(--btn-primary) !important;
+  color: var(--text-primary) !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.button:hover {
+  transform: scale(1.05) !important;
+}
+
+.navbar .nav-link {
+  color: var(--nav-icon-color) !important;
+  transition: color 0.3s ease !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--btn-primary) !important;
+}
+
+.text-modal {
+  color: black !important;
 }
 
 
