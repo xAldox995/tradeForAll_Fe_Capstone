@@ -1,0 +1,16 @@
+.cards {
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  padding: 20px;
+  margin: 10px 0;
+  }
+  
+  .cards:hover {
+    background-color: var(--btn-hover);
+    color: var(--text-primary);
+  }
+  

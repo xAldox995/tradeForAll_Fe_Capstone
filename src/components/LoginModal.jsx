@@ -3,10 +3,12 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ show, onHide }) => {
   const dispatch = useDispatch();
   const { error, loading } = useSelector((state) => state.auth);
+  const navigate= useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ const LoginModal = ({ show, onHide }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} centered className="text-modal">
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
@@ -52,6 +54,7 @@ const LoginModal = ({ show, onHide }) => {
             type="submit"
             className="mt-4 w-100"
             disabled={loading}
+            onClick={()=> navigate("/dashboard")}
           >
             {loading ? "Logging in..." : "Login"}
           </Button>
