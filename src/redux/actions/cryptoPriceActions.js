@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../config/axiosConfig";
 import { CRYPTO_COMPARE_PREZZO_FAILURE, CRYPTO_COMPARE_PREZZO_REQUEST, CRYPTO_COMPARE_PREZZO_SUCCESS } from "./types";
 import { API_URL } from "./authActions";
 
