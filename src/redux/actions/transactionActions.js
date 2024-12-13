@@ -1,4 +1,4 @@
-import axios from "../config/axiosConfig"
+import axios from "axios";
 import { API_URL } from "./authActions";
 import { TRANSACTION_FAILURE, TRANSACTION_REQUEST, TRANSACTION_SUCCESS } from "./types";
 

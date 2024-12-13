@@ -1,10 +1,10 @@
-import axios from "../config/axiosConfig";
+import axios from "axios";
 import { CRYPTO_COMPARE_PREZZO_FAILURE, CRYPTO_COMPARE_PREZZO_REQUEST, CRYPTO_COMPARE_PREZZO_SUCCESS } from "./types";
 import { API_URL } from "./authActions";
 
 export const fetchCryptoPrice = (symbol) => (dispatch) => {
     dispatch({ type: CRYPTO_COMPARE_PREZZO_REQUEST, payload: symbol });
-    axios.get(`${API_URL}/crypto/price?symbol=ETH`, {
+    axios.get(`${API_URL}/crypto/price?symbol=${symbol}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         }

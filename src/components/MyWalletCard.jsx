@@ -1,73 +1,52 @@
 import { useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWallet } from "../redux/actions/walletActions";
-import { fetchCryptoPrice } from "../redux/actions/cryptoPriceActions";
+import { fetchWalletAndPrices } from "../redux/actions/walletActions";
 
 const MyWalletCard = () => {
   const dispatch = useDispatch();
 
-  // Redux state
-  const { user } = useSelector((state) => state.auth);
-  const { wallet, loading: walletLoading, error: walletError } = useSelector(
-    (state) => state.wallet
-  );
-  const {
-    cryptoPrices,
-    loading: cryptoPricesLoading,
-    error: cryptoPricesError,
-  } = useSelector((state) => state.cryptoPrice);
+  const wallet = useSelector((state) => state.wallet.wallet);
+  const cryptoPrices = useSelector((state) => state.cryptoPrice.cryptoPrice);
+  const loading = useSelector((state) => state.wallet.loading);
+  const error = useSelector((state) => state.wallet.error);
 
-  // Fetch wallet data
   useEffect(() => {
-    if (user?.accessToken) {
-      dispatch(fetchWallet());
-    } else {
-      console.error("User is not authenticated.");
-    }
-  }, [dispatch, user]);
+    dispatch(fetchWalletAndPrices());
+  }, []);
 
-  // Fetch crypto prices for each asset
-  useEffect(() => {
-    if (
-      wallet &&
-      wallet.walletCryptoList &&
-      Array.isArray(wallet.walletCryptoList)
-    ) {
-      wallet.walletCryptoList.forEach((crypto) => {
-        if (crypto.symbol) {
-          dispatch(fetchCryptoPrice(crypto.symbol));
-        }
-      });
-    }
-  }, [dispatch, wallet]);
+  if (loading) return <p>Loading wallet...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-  // Calculate total balance
-  const totalBalance = () => {
-    if (!wallet || !wallet.walletCryptoList || cryptoPricesLoading) {
-      return "Loading...";
-    }
+  const calculateTotalBalance = () => {
+    if (!wallet || !cryptoPrices) return 0;
 
-    const cryptoValue = wallet.walletCryptoList.reduce((acc, crypto) => {
-      const price = cryptoPrices[crypto.symbol] || 0;
-      return acc + crypto.saldo * price;
+    return wallet.importo + wallet.walletCryptoList.reduce((total, crypto) => {
+      const price = cryptoPrices[crypto.simbolo]?.USD || 0;
+      return total + crypto.saldo * price;
     }, 0);
-
-    return (wallet.importo + cryptoValue).toFixed(2);
   };
 
-  // Render loading/error states
-  if (walletLoading) return <p>Loading wallet...</p>;
-  if (walletError) return <p>Error loading wallet: {walletError}</p>;
-  if (cryptoPricesError) return <p>Error loading crypto prices: {cryptoPricesError}</p>;
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
 
-  // Render component
+  if (error) {
+    return <Alert variant="danger">Error: {error}</Alert>;
+  }
+
   return (
-    <Card className="cards">
+    <Card className="my-wallet-card text-center" bg="dark" text="light">
       <Card.Body>
-        <Card.Title>My Wallet</Card.Title>
-        <Card.Text>
-          Total Value: €{totalBalance()}
+        <Card.Title>Total Balance</Card.Title>
+        <Card.Text className="fs-4">
+          ${calculateTotalBalance().toFixed(2)} USD
         </Card.Text>
       </Card.Body>
     </Card>

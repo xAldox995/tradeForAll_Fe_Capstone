@@ -3,7 +3,7 @@ import { CRYPTO_COMPARE_HISTORY_SUCCESS, CRYPTO_COMPARE_PREZZO_FAILURE, CRYPTO_C
 const initialState = {
     loading: false,
     error: null,
-    cryptoPrice: {},
+    cryptoPrice:null,
 };
 
 export const cryptoPriceReducer = (state = initialState, action) => {
@@ -14,12 +14,13 @@ export const cryptoPriceReducer = (state = initialState, action) => {
                 loading: true,
                 error: null,
             };
-        case CRYPTO_COMPARE_HISTORY_SUCCESS:
+        
+            case CRYPTO_COMPARE_HISTORY_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                cryptoPrice: { ...state.cryptoPrice, [action.payload.symbol]: action.payload },
-            };
+                cryptoPrice: action.payload,
+                };
 
         case CRYPTO_COMPARE_PREZZO_FAILURE:
             return {
