@@ -5,6 +5,7 @@ import { CRYPTO_COMPARE_PREZZO_FAILURE, CRYPTO_COMPARE_PREZZO_SUCCESS, WALLET_FA
 
 export const fetchWalletAndPrices = () => (dispatch) => {
   const token = localStorage.getItem("token");
+  console.log("Token in localStorage:", token); // Verifica il token
   if (!token) {
     console.error("Access token is missing.");
     return;
@@ -14,15 +15,15 @@ export const fetchWalletAndPrices = () => (dispatch) => {
 
   axios
     .get(`${API_URL}/wallets/me`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }, // Sintassi corretta
     })
     .then((walletResponse) => {
       const wallet = walletResponse.data;
       dispatch({ type: WALLET_SUCCESS, payload: wallet });
 
-      // Fetch prices for all symbols
       const priceRequests = wallet.walletCryptoList.map((crypto) =>
-        axios.get(`${API_URL}/api/crypto/price?symbol=${crypto.simbolo}`)
+        console.log(crypto.simbolo),
+        axios.get(`${API_URL}/crypto/price?symbol=${crypto.simbolo}`)
       );
 
       return Promise.all(priceRequests)
@@ -30,6 +31,7 @@ export const fetchWalletAndPrices = () => (dispatch) => {
           const prices = priceResponses.reduce((acc, response, index) => {
             const symbol = wallet.walletCryptoList[index].simbolo;
             acc[symbol] = response.data;
+            console.log(response);
             return acc;
           }, {});
 
@@ -45,6 +47,7 @@ export const fetchWalletAndPrices = () => (dispatch) => {
     })
     .catch((walletError) => {
       console.error("Error fetching wallet:", walletError);
+      console.log(walletError.response); // Visualizza la risposta dell'errore
       dispatch({
         type: WALLET_FAILURE,
         payload: walletError.response?.data?.message || walletError.message,

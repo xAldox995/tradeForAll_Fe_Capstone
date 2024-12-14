@@ -13,7 +13,7 @@ const MyWalletCard = () => {
 
   useEffect(() => {
     dispatch(fetchWalletAndPrices());
-  }, []);
+  }, [dispatch]);
 
   if (loading) return <p>Loading wallet...</p>;
   if (error) return <p>Error: {error}</p>;
