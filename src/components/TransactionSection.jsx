@@ -4,6 +4,7 @@ import { Offcanvas, Button, Form, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { executeTransaction } from "../redux/actions/transactionActions";
 import { fetchWalletAndBalance } from "../redux/actions/walletActions";
+import "./TransactionSection.css";
 
 const TransactionSection = ({ show, onHide }) => {
   const dispatch = useDispatch();
