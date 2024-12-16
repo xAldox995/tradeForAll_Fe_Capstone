@@ -1,4 +1,4 @@
-import { TRANSACTION_REQUEST, TRANSACTION_SUCCESS } from "../actions/types";
+import { TRANSACTION_FAILURE, TRANSACTION_REQUEST, TRANSACTION_SUCCESS } from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -20,6 +20,13 @@ export const transactionReducer = (state = initialState, action) => {
                 loading: false,
                 transactions: action.payload,
             };
+
+        case TRANSACTION_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
         default:
             return state;
     }
