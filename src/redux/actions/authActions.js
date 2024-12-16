@@ -8,6 +8,7 @@ import {
   REGISTER_FAILURE,
   LOGOUT,
 } from "./types";
+import { fetchWalletAndBalance } from "./walletActions";
 
 export const API_URL = import.meta.env.VITE_BASE_URL_FOR_FETCH;
 
@@ -22,6 +23,7 @@ export const login = (credenziali) => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: user,
       });
+      dispatch(fetchWalletAndBalance());
     })
     .catch((error) => {
       dispatch({

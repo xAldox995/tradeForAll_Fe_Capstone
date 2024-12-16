@@ -1,11 +1,9 @@
 import axios from "axios";
 import { API_URL } from "./authActions";
-import { CRYPTO_COMPARE_PREZZO_FAILURE, CRYPTO_COMPARE_PREZZO_SUCCESS, WALLET_FAILURE, WALLET_REQUEST, WALLET_SUCCESS } from "./types";
+import { WALLET_FAILURE, WALLET_REQUEST, WALLET_SUCCESS } from "./types";
 
-
-export const fetchWalletAndPrices = () => (dispatch) => {
+export const fetchWalletAndBalance = () => (dispatch) => {
   const token = localStorage.getItem("token");
-  console.log("Token in localStorage:", token); // Verifica il token
   if (!token) {
     console.error("Access token is missing.");
     return;
@@ -15,43 +13,46 @@ export const fetchWalletAndPrices = () => (dispatch) => {
 
   axios
     .get(`${API_URL}/wallets/me`, {
-      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }, // Sintassi corretta
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((walletResponse) => {
       const wallet = walletResponse.data;
-      dispatch({ type: WALLET_SUCCESS, payload: wallet });
 
-      const priceRequests = wallet.walletCryptoList.map((crypto) =>
-        console.log(crypto.simbolo),
-        axios.get(`${API_URL}/crypto/price?symbol=${crypto.simbolo}`)
-      );
-
-      return Promise.all(priceRequests)
-        .then((priceResponses) => {
-          const prices = priceResponses.reduce((acc, response, index) => {
-            const symbol = wallet.walletCryptoList[index].simbolo;
-            acc[symbol] = response.data;
-            console.log(response);
-            return acc;
-          }, {});
-
-          dispatch({ type: CRYPTO_COMPARE_PREZZO_SUCCESS, payload: prices });
+      axios
+        .get(`${API_URL}/wallets/me/cryptos/wallets_value`, {
+          headers: { Authorization: `Bearer ${token}` },
         })
-        .catch((priceError) => {
-          console.error("Error fetching prices:", priceError);
+        .then((balanceResponse) => {
+          const balances = balanceResponse.data; // Mappa valori degli asset
+          const totalCryptoValue = Object.values(balances).reduce(
+            (acc, value) => acc + value,
+            0
+          );
+
+          const totalValue = wallet.importo + totalCryptoValue;
+
           dispatch({
-            type: CRYPTO_COMPARE_PREZZO_FAILURE,
-            payload: priceError.message,
+            type: WALLET_SUCCESS,
+            payload: {
+              wallet,
+              balances,
+              totalValue,
+            },
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching crypto balances:", error);
+          dispatch({
+            type: WALLET_FAILURE,
+            payload: error.message,
           });
         });
     })
     .catch((walletError) => {
       console.error("Error fetching wallet:", walletError);
-      console.log(walletError.response); // Visualizza la risposta dell'errore
       dispatch({
         type: WALLET_FAILURE,
         payload: walletError.response?.data?.message || walletError.message,
       });
     });
 };
-

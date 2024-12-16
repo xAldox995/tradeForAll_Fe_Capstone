@@ -1,32 +1,26 @@
 import { useEffect } from "react";
-import { Card, Spinner, Alert } from "react-bootstrap";
+import { Card, Spinner, Alert, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWalletAndPrices } from "../redux/actions/walletActions";
+import { fetchWalletAndBalance } from "../redux/actions/walletActions";
 
 const MyWalletCard = () => {
   const dispatch = useDispatch();
 
-  const wallet = useSelector((state) => state.wallet.wallet);
-  const cryptoPrices = useSelector((state) => state.cryptoPrice.cryptoPrice);
+  // Redux state
+  const wallet = useSelector((state) => state.wallet.wallet || { walletCryptoList: [], importo: 0 });
+  const balances = useSelector((state) => state.wallet.balances || {});
+  const totalValue = useSelector((state) => state.wallet.totalValue || 0);
   const loading = useSelector((state) => state.wallet.loading);
   const error = useSelector((state) => state.wallet.error);
-
+  const token = useSelector((state) => state.auth.user?.accessToken); 
+  
   useEffect(() => {
-    dispatch(fetchWalletAndPrices());
-  }, [dispatch]);
+    if (token) {
+      dispatch(fetchWalletAndBalance());
+    }
+  }, [dispatch, token]);
 
-  if (loading) return <p>Loading wallet...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-  const calculateTotalBalance = () => {
-    if (!wallet || !cryptoPrices) return 0;
-
-    return wallet.importo + wallet.walletCryptoList.reduce((total, crypto) => {
-      const price = cryptoPrices[crypto.simbolo]?.USD || 0;
-      return total + crypto.saldo * price;
-    }, 0);
-  };
-
+  
   if (loading) {
     return (
       <div className="d-flex justify-content-center">
@@ -37,6 +31,7 @@ const MyWalletCard = () => {
     );
   }
 
+  // Gestione errori
   if (error) {
     return <Alert variant="danger">Error: {error}</Alert>;
   }
@@ -44,13 +39,38 @@ const MyWalletCard = () => {
   return (
     <Card className="my-wallet-card text-center" bg="dark" text="light">
       <Card.Body>
-        <Card.Title>Total Balance</Card.Title>
+        <Card.Title>Total Wallet Balance</Card.Title>
         <Card.Text className="fs-4">
-          ${calculateTotalBalance().toFixed(2)} USD
+          {totalValue.toFixed(2)} EUR
         </Card.Text>
+        <Card.Subtitle className="mt-3">Liquidità Disponibile</Card.Subtitle>
+        <Card.Text className="fs-5">
+          {wallet.importo.toFixed(2)} EUR
+        </Card.Text>
+        <Card.Subtitle className="mt-4">Criptovalute Possedute</Card.Subtitle>
+        <ListGroup variant="flush" className="text-start mt-2">
+          {wallet.walletCryptoList.length > 0 ? (
+            wallet.walletCryptoList.map((crypto) => {
+              const assetValue = balances[crypto.simbolo] || 0; // Valore del singolo asset
+              return (
+                <ListGroup.Item key={crypto.id} className="bg-dark text-light">
+                  <strong>{crypto.simbolo}:</strong>
+                  <br />
+                  <span>Saldo: {crypto.saldo.toFixed(2)}</span>
+                  <br />
+                  <span>Valore Totale: {assetValue.toFixed(2)} EUR</span>
+                </ListGroup.Item>
+              );
+            })
+          ) : (
+            <ListGroup.Item className="bg-dark text-light">
+              Nessuna criptovaluta posseduta.
+            </ListGroup.Item>
+          )}
+        </ListGroup>
       </Card.Body>
     </Card>
   );
-}
+};
 
-export default MyWalletCard
+export default MyWalletCard;
