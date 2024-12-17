@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopVolume } from "../redux/actions/cryptoVolumeActions";
@@ -7,13 +6,18 @@ import { Card, ListGroup, Spinner, Alert } from "react-bootstrap";
 const TopVolumeCard = () => {
   const dispatch = useDispatch();
 
-  // Stato Redux
+
   const { topVolume, loading, error } = useSelector((state) => state.crypto);
 
-  // Fetch dei dati al montaggio del componente
+  
+  const token = localStorage.getItem("token");
+
+  
   useEffect(() => {
-    dispatch(fetchTopVolume());
-  }, [dispatch]);
+    if (token) {
+      dispatch(fetchTopVolume());
+    }
+  }, [dispatch, token]); // Aggiunto token come dipendenza
 
   return (
     <Card className="mt-4">
