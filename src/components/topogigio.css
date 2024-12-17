@@ -1,0 +1,10 @@
+.pandolfo {
+  background-color: var(--background-color)!important;
+  color: var(--text-color)!important;
+  }
+  
+  .cards:hover {
+    background-color: var(--background-color); /* Colore di sfondo dinamico */
+    color: var(--text-color);
+  }
+  

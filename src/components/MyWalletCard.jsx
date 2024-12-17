@@ -2,25 +2,27 @@ import { useEffect } from "react";
 import { Card, Spinner, Alert, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWalletAndBalance } from "../redux/actions/walletActions";
+import "./topogigio.css"
 
 const MyWalletCard = () => {
   const dispatch = useDispatch();
 
   // Redux state
-  const wallet = useSelector((state) => state.wallet.wallet || { walletCryptoList: [], importo: 0 });
+  const wallet = useSelector(
+    (state) => state.wallet.wallet || { walletCryptoList: [], importo: 0 }
+  );
   const balances = useSelector((state) => state.wallet.balances || {});
   const totalValue = useSelector((state) => state.wallet.totalValue || 0);
   const loading = useSelector((state) => state.wallet.loading);
   const error = useSelector((state) => state.wallet.error);
-  const token = useSelector((state) => state.auth.user?.accessToken); 
-  
+  const token = useSelector((state) => state.auth.user?.accessToken);
+
   useEffect(() => {
     if (token) {
       dispatch(fetchWalletAndBalance());
     }
   }, [dispatch, token]);
 
-  
   if (loading) {
     return (
       <div className="d-flex justify-content-center">
@@ -37,23 +39,19 @@ const MyWalletCard = () => {
   }
 
   return (
-    <Card className="my-wallet-card text-center" bg="dark" text="light">
+    <Card className="pandolfo">
       <Card.Body>
         <Card.Title>Total Wallet Balance</Card.Title>
-        <Card.Text className="fs-4">
-          {totalValue.toFixed(2)} EUR
-        </Card.Text>
+        <Card.Text className="fs-4">{totalValue.toFixed(2)} EUR</Card.Text>
         <Card.Subtitle className="mt-3">Liquidità Disponibile</Card.Subtitle>
-        <Card.Text className="fs-5">
-          {wallet.importo.toFixed(2)} EUR
-        </Card.Text>
+        <Card.Text className="fs-5">{wallet.importo.toFixed(2)} EUR</Card.Text>
         <Card.Subtitle className="mt-4">Criptovalute Possedute</Card.Subtitle>
         <ListGroup variant="flush" className="text-start mt-2">
           {wallet.walletCryptoList.length > 0 ? (
             wallet.walletCryptoList.map((crypto) => {
               const assetValue = balances[crypto.simbolo] || 0; // Valore del singolo asset
               return (
-                <ListGroup.Item key={crypto.id} className="bg-dark text-light">
+                <ListGroup.Item key={crypto.id} className="pandolfo">
                   <strong>{crypto.simbolo}:</strong>
                   <br />
                   <span>Saldo: {crypto.saldo.toFixed(2)}</span>

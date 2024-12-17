@@ -20,7 +20,7 @@ const TopVolumeCard = () => {
   }, [dispatch, token]); // Aggiunto token come dipendenza
 
   return (
-    <Card className="mt-4">
+    <Card className="pandolfo">
       <Card.Body>
         <Card.Title>Top Volume Cryptos</Card.Title>
         {loading && <Spinner animation="border" />}
@@ -28,7 +28,7 @@ const TopVolumeCard = () => {
         {!loading && !error && (
           <ListGroup>
             {topVolume.map((crypto, index) => (
-              <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+              <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center pandolfo">
                 <div className="d-flex align-items-center">
                   <img
                     src={crypto.imageUrl}
@@ -57,6 +57,7 @@ const TopVolumeCard = () => {
         )}
       </Card.Body>
     </Card>
+
   );
 };
 

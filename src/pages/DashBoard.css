@@ -9,8 +9,8 @@
 }
 
 .dashboard-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--text-secondary);
+  background-color: var(--background-color); /* Colore di sfondo dinamico */
+  color: var(--text-color); /* Colore del testo dinamico */
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -18,11 +18,13 @@
   width: 90%; /* Riduce la larghezza per una migliore estetica */
   max-width: 400px; /* Limita la dimensione massima */
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .dashboard-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Effetto hover */
+  background-color: var(--btn-hover); /* Sfondo hover dinamico */
+  color: var(--background-color); /* Testo dinamico */
 }
 
 .history-prices {

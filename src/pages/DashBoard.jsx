@@ -9,10 +9,10 @@ const Dashboard = () => {
     <Container fluid className="dashboard-container d-flex  h-100 mt-5">
       {/* Riga con My Wallet e Top Volume */}
       <Row className="justify-content-center flex-nowrap mb-4">
-        <Col md={4} className="dashboard-card cards my-wallet">
+        <Col md={4} className="dashboard-card my-wallet">
           <MyWalletCard />
         </Col>
-        <Col md={4} className="dashboard-card cards top-volume">
+        <Col md={4} className="dashboard-card top-volume">
           <TopVolumeCard />
         </Col>
       </Row>
