@@ -20,7 +20,7 @@ const TopVolumeCard = () => {
   }, [dispatch, token]); // Aggiunto token come dipendenza
 
   return (
-    <Card className="pandolfo">
+    <Card className="pandolfo h-100">
       <Card.Body>
         <Card.Title>Top Volume Cryptos</Card.Title>
         {loading && <Spinner animation="border" />}
