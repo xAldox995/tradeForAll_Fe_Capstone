@@ -9,8 +9,8 @@
 :root[data-theme="light-mode"] {
   --background-color: #f0ffff;
   --text-color: #000f0f;
-  --btn-primary: #21325e;
-  --btn-hover: #99a7cc;
+  --btn-primary:#99a7cc ;
+  --btn-hover:#21325e; 
   --nav-icon-color:#0b080c;
 }
 
@@ -54,8 +54,8 @@ body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
 
 /* Stili generali per i modali */
 .custom-modal .modal-content {
-  background-color: var(--background-color); /* Sfondo dinamico */
-  color: var(--text-color); /* Testo dinamico */
+  background-color: var(--background-color);
+  color: var(--text-color);  
   border: 1px solid var(--btn-hover);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -68,13 +68,13 @@ body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
 }
 
 .custom-modal .modal-title {
-  color: var(--btn-primary); /* Testo del titolo */
+  color: var(--text-color); 
 }
 
 .custom-modal .modal-body input,
 .custom-modal .modal-body button {
-  background-color: var(--btn-primary); /* Pulsanti/input */
-  color: var(--background-color); /* Testo dei pulsanti */
+  background-color: var(--btn-primary); 
+  color: var(--text-color); 
   border: none;
   transition: all 0.3s ease;
 }
@@ -92,7 +92,7 @@ body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
 
 
 .custom-modal input::placeholder {
-  color: var(--text-secondary); 
+  color: var(--text-color); 
   opacity: 0.7; 
   transition: color 0.3s ease;
 }

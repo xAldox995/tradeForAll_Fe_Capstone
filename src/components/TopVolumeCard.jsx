@@ -9,15 +9,14 @@ const TopVolumeCard = () => {
 
   const { topVolume, loading, error } = useSelector((state) => state.crypto);
 
-  
-  const token = localStorage.getItem("token");
+  const { user } = useSelector((state) => state.auth);
 
   
   useEffect(() => {
-    if (token) {
+    if (user && localStorage.getItem("token")) {
       dispatch(fetchTopVolume());
     }
-  }, [dispatch, token]); // Aggiunto token come dipendenza
+  }, [dispatch, user]);
 
   return (
     <Card className="pandolfo h-100">
