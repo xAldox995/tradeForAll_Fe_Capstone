@@ -1,54 +1,131 @@
-/* TransactionSection.css */
 
 .transaction-modal {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    border-radius: 8px;
-    padding: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .transaction-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--text-secondary);
-    padding-bottom: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .transaction-modal-body {
-    padding: 15px 0;
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    overflow-y: auto;
-    max-height: 60vh;
-  }
-  
-  .transaction-modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--text-secondary);
-  }
-  
-  .transaction-btn {
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: var(--btn-primary);
-    color: var(--text-primary);
-    border: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .transaction-btn:hover {
-    background-color: var(--btn-hover);
-    transform: scale(1.05);
-  }
-  
-  .transaction-btn:active {
-    transform: scale(0.95);
-  }
+  background-color: var(--background-color); 
+  color: var(--text-color); 
+  border: 1px solid var(--btn-hover); 
+  border-radius: 8px;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.transaction-modal-body {
+  padding: 15px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.5;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+/* Stile per gli input */
+.transaction-modal-body input {
+  background-color: var(--btn-primary); 
+  color: var(--text-color); 
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.transaction-modal-body input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--btn-hover); 
+}
+
+/* Stile per i placeholder */
+.transaction-modal-body input::placeholder {
+  color: var(--text-color);
+  opacity: 0.7; 
+  transition: color 0.3s ease;
+}
+
+.transaction-modal-body input:focus::placeholder {
+  color: var(--btn-hover);
+  opacity: 1;
+}
+
+/* Stile per i bottoni */
+.transaction-btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: var(--btn-primary);
+  color: var(--background-color);
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.transaction-btn:hover {
+  background-color: var(--btn-hover);
+  color: var(--text-color);
+  transform: scale(1.05);
+}
+
+.transaction-btn:active {
+  transform: scale(0.95);
+}
+
+.transaction-input {
+  background-color: var(--btn-primary); 
+  color: var(--text-color);
+  border: 1px solid var(--btn-hover); 
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  transition: all 0.3s ease; 
+}
+
+.transaction-input:focus {
+  outline: none;
+  border-color: var(--btn-hover); 
+  box-shadow: 0 0 5px var(--btn-hover); 
+  background-color: var(--background-color); 
+  color: var(--text-color);
+}
+
+
+.transaction-input::placeholder {
+  color: var(--text-color);
+  opacity: 0.6; 
+  transition: color 0.3s ease;
+}
+
+.transaction-input:focus::placeholder {
+  color: var(--btn-hover); 
+  opacity: 1; 
+}
+
+/* Hover sugli input */
+.transaction-input:hover {
+  border-color: var(--btn-hover);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Personalizzazione generale */
+.transaction-input:disabled {
+  background-color: var(--text-secondary);
+  color: var(--background-color);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.transaction-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--btn-hover);
+}

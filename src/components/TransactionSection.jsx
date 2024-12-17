@@ -82,13 +82,14 @@ const TransactionSection = ({ show, onHide }) => {
             <Form.Label>Seleziona Criptovaluta</Form.Label>
             {type === "ACQUISTO" ? (
               <Form.Control
+               className="transaction-input"
                 type="text"
                 placeholder="Inserisci il simbolo (es. BTC)"
                 value={symbol}
                 onChange={(e) => setSymbol(e.target.value.toUpperCase())}
               />
             ) : (
-              <Form.Select value={symbol} onChange={(e) => setSymbol(e.target.value)}>
+              <Form.Select value={symbol} onChange={(e) => setSymbol(e.target.value)}  className="transaction-input">
                 <option value="">Scegli una criptovaluta</option>
                 {cryptosForSale.map((crypto) => (
                   <option key={crypto.id} value={crypto.simbolo}>
@@ -101,6 +102,7 @@ const TransactionSection = ({ show, onHide }) => {
           <Form.Group className="mb-3">
             <Form.Label>Quantità</Form.Label>
             <Form.Control
+             className="transaction-input"
               type="number"
               min="0"
               step="0.01"
@@ -110,7 +112,7 @@ const TransactionSection = ({ show, onHide }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Tipo di Transazione</Form.Label>
-            <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
+            <Form.Select value={type} onChange={(e) => setType(e.target.value)}  className="transaction-input">
               <option value="ACQUISTO">Acquisto</option>
               <option value="VENDITA">Vendita</option>
             </Form.Select>
@@ -118,7 +120,7 @@ const TransactionSection = ({ show, onHide }) => {
           <Button
             type="submit"
             className="transaction-btn"
-            disabled={loading} // Disabilitato solo se la richiesta è in corso
+            disabled={loading}
           >
             {loading ? <Spinner animation="border" size="sm" /> : "Esegui Transazione"}
           </Button>

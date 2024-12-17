@@ -9,22 +9,22 @@
 }
 
 .dashboard-card {
-  background-color: var(--background-color); /* Colore di sfondo dinamico */
-  color: var(--text-color); /* Colore del testo dinamico */
+  background-color: var(--background-color); 
+  color: var(--text-color); 
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  width: 90%; /* Riduce la larghezza per una migliore estetica */
-  max-width: 400px; /* Limita la dimensione massima */
+  width: 90%; 
+  max-width: 400px;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .dashboard-card:hover {
-  transform: scale(1.05); /* Effetto hover */
-  background-color: var(--btn-hover); /* Sfondo hover dinamico */
-  color: var(--background-color); /* Testo dinamico */
+  transform: scale(1.05); 
+  background-color: var(--btn-hover);
+  color: var(--background-color); 
 }
 
 .history-prices {
