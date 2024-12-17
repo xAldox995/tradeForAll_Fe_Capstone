@@ -1,39 +1,27 @@
-// Dashboard.jsx
-
 import { Container, Row, Col } from "react-bootstrap";
 import MyAssetCarousel from "../components/MyAssetCarousel";
 import MyWalletCard from "../components/MyWalletCard";
 import TopVolumeCard from "../components/TopVolumeCard";
 import "./Dashboard.css";
+import "./Cards.css";
 
 const Dashboard = () => {
   return (
     <Container fluid className="dashboard-container h-100">
-      
-      <Row>
-        <Col md={2} className="dashboard-sidebar">
-        
+      {/* Riga con My Wallet e Top Volume */}
+      <Row className="justify-content-center mb-4">
+        <Col md={4} className="dashboard-card cards my-wallet">
+          <MyWalletCard />
         </Col>
+        <Col md={4} className="dashboard-card cards top-volume">
+          <TopVolumeCard />
+        </Col>
+      </Row>
 
-        
-        <Col md={10} className="dashboard-content">
-          <Row>
-            <Col md={4} className="dashboard-card my-wallet">
-              <MyWalletCard />
-            </Col>
-            <Col md={4} className="dashboard-card top-volume">
-              <TopVolumeCard />
-            </Col>
-            <Col md={4} className="dashboard-card transactions">
-             
-            </Col>
-          </Row>
-
-          <Row className="history-prices">
-            <Col>
-              <MyAssetCarousel />
-            </Col>
-          </Row>
+      {/* Carosello */}
+      <Row className="history-prices cards">
+        <Col>
+          <MyAssetCarousel />
         </Col>
       </Row>
     </Container>
