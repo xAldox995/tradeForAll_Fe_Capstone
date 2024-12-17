@@ -3,13 +3,12 @@ import MyAssetCarousel from "../components/MyAssetCarousel";
 import MyWalletCard from "../components/MyWalletCard";
 import TopVolumeCard from "../components/TopVolumeCard";
 import "./Dashboard.css";
-import "./Cards.css";
 
 const Dashboard = () => {
   return (
-    <Container fluid className="dashboard-container h-100">
+    <Container fluid className="dashboard-container d-flex  h-100 mt-5">
       {/* Riga con My Wallet e Top Volume */}
-      <Row className="justify-content-center mb-4">
+      <Row className="justify-content-center flex-nowrap mb-4">
         <Col md={4} className="dashboard-card cards my-wallet">
           <MyWalletCard />
         </Col>
