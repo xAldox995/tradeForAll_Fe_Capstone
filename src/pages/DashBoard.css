@@ -1,0 +1,84 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  background-color: var(--bg-primary);
+}
+
+.dashboard-card {
+  background-color: var(--background-color); /* Colore di sfondo dinamico */
+  color: var(--text-color); /* Colore del testo dinamico */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 90%; /* Riduce la larghezza per una migliore estetica */
+  max-width: 400px; /* Limita la dimensione massima */
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05); /* Effetto hover */
+  background-color: var(--btn-hover); /* Sfondo hover dinamico */
+  color: var(--background-color); /* Testo dinamico */
+}
+
+.history-prices {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.history-carousel {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .dashboard-card {
+    width: 100%;
+    max-width: none;
+  }
+
+  .history-prices {
+    max-width: 100%;
+  }
+}
+.sidebar-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  background-color: var(--background-color);
+  color: var(--nav-icon-color);
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-btn:hover {
+  background-color: var(--btn-hover);
+  color: var(--text-primary);
+}
+
+.nav-item-spacing {
+  margin-bottom: 10px;
+}
+
+.logo-item {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sidebar-logo {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}

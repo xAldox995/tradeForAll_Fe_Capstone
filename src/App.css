@@ -1,42 +1,57 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root[data-theme="dark-mode"] {
+  --background-color: #0b080c;
+  --text-color: #f0ffff;
+  --btn-primary: #334166;
+  --btn-hover: #759cff;
+  --nav-icon-color: #99a7cc;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root[data-theme="light-mode"] {
+  --background-color: #f0ffff;
+  --text-color: #000f0f;
+  --btn-primary: #21325e;
+  --btn-hover: #99a7cc;
+  --nav-icon-color:#0b080c;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+body,html {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+  width: 100% !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
+  display: none;
 }
 
-.card {
-  padding: 2em;
+.button {
+  background-color: var(--btn-primary) !important;
+  color: var(--text-primary) !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
-.read-the-docs {
-  color: #888;
+.button:hover {
+  transform: scale(1.05) !important;
 }
+
+.navbar .nav-link {
+  color: var(--nav-icon-color) !important;
+  transition: color 0.3s ease !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--btn-primary) !important;
+}
+
+.text-modal {
+  color: black !important;
+}
+
+
+
+
