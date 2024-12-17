@@ -52,6 +52,55 @@ body::-webkit-scrollbar, .transaction-modal-body::-webkit-scrollbar {
   color: black !important;
 }
 
+/* Stili generali per i modali */
+.custom-modal .modal-content {
+  background-color: var(--background-color); /* Sfondo dinamico */
+  color: var(--text-color); /* Testo dinamico */
+  border: 1px solid var(--btn-hover);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+  border: none;
+}
+
+.custom-modal .modal-title {
+  color: var(--btn-primary); /* Testo del titolo */
+}
+
+.custom-modal .modal-body input,
+.custom-modal .modal-body button {
+  background-color: var(--btn-primary); /* Pulsanti/input */
+  color: var(--background-color); /* Testo dei pulsanti */
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.custom-modal .modal-body input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--btn-hover);
+}
+
+.custom-modal .modal-body button:hover {
+  background-color: var(--btn-hover);
+  color: var(--text-color);
+  transform: scale(1.05);
+}
+
+
+.custom-modal input::placeholder {
+  color: var(--text-secondary); 
+  opacity: 0.7; 
+  transition: color 0.3s ease;
+}
+
+.custom-modal input:focus::placeholder {
+  color: var(--btn-hover);
+  opacity: 1; 
+}
 
 
 

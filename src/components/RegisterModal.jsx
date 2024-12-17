@@ -4,8 +4,10 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../redux/actions/authActions";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = ({ show, onHide }) => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { error, loading } = useSelector((state) => state.auth);
 
@@ -25,7 +27,7 @@ const RegisterModal = ({ show, onHide }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered className="text-modal">
+    <Modal show={show} onHide={onHide} centered className="custom-modal">
       <Modal.Header closeButton>
         <Modal.Title>Register</Modal.Title>
       </Modal.Header>
@@ -70,6 +72,7 @@ const RegisterModal = ({ show, onHide }) => {
             type="submit"
             className="mt-4 w-100"
             disabled={loading}
+            onClick={() => navigate("/dashboard")}
           >
             {loading ? "Registering..." : "Register"}
           </Button>

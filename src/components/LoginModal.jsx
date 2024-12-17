@@ -22,7 +22,7 @@ const LoginModal = ({ show, onHide }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered className="text-modal">
+    <Modal show={show} onHide={onHide} centered className="custom-modal">
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
